@@ -3,7 +3,7 @@
   "type": "module",
   "sideEffects": false,
   "description": "Typescript port of js-money. Implementation of the Money value object.",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
