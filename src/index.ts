@@ -1,4 +1,4 @@
-import { Currency } from './lib/currency'
+import type { Currency } from './lib/currency'
 import { Currencies } from './lib/currencies'
 
 export type Rounder = 'round' | 'floor' | 'ceil' | Function;
@@ -8,11 +8,11 @@ export interface Amount {
     currency: string | Currency
 }
 
-let isInt = function (n) {
+let isInt = function (n: any) {
     return Number(n) === n && n % 1 === 0
 }
 
-let decimalPlaces = function (num) {
+let decimalPlaces = function (num: number) {
     let match = ('' + num).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/)
 
     if (!match)
@@ -22,17 +22,17 @@ let decimalPlaces = function (num) {
         (match[1] ? match[1].length : 0) - (match[2] ? +match[2] : 0))
 }
 
-let assertSameCurrency = function (left, right) {
+let assertSameCurrency = function (left: Money, right: Money) {
     if (left.currency !== right.currency)
         throw new Error('Different currencies')
 }
 
-let assertType = function (other) {
+let assertType = function (other: any) {
     if (!(other instanceof Money))
         throw new TypeError('Instance of Money required')
 }
 
-let assertOperand = function (operand) {
+let assertOperand = function (operand: any) {
     if (Number.isNaN(parseFloat(operand)) && !isFinite(operand))
         throw new TypeError('Operand must be a number')
 }
@@ -49,6 +49,7 @@ let getCurrencyObject = function (currency: string): Currency {
                 return Currencies[key]
         }
     }
+    throw new TypeError(`No currency found with code ${currency}`);
 }
 
 let isObjectLike = (value: any): boolean => {
@@ -64,7 +65,7 @@ let getTag = (value: any): string => {
   if (value == null) {
     return value === undefined ? '[object Undefined]' : '[object Null]'
   }
-  return toString.call(value)
+  return Object.prototype.toString.call(value)
 }
 
 let isPlainObject = (value: any): boolean => {
@@ -128,6 +129,9 @@ class Money {
 
         if (!isInt(amount))
             throw new TypeError('Amount must be an integer value')
+
+        if (!currency)
+            throw new TypeError('Missing required parameter currency')
 
         return new Money(amount, currency)
     }
@@ -259,7 +263,7 @@ class Money {
     allocate(ratios: number[]): Money[] {
         let self = this
         let remainder = self.amount
-        let results = []
+        let results: Money[] = []
         let total = 0
 
         ratios.forEach(function (ratio) {

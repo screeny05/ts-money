@@ -1,9 +1,9 @@
 # TS Money
 
-[![NPM version](https://img.shields.io/npm/v/ts-money.svg)](https://www.npmjs.com/package/ts-money)
+[![NPM version](https://img.shields.io/npm/v/@screeny05/ts-money.svg)](https://www.npmjs.com/package/@screeny05/ts-money)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![](https://img.shields.io/npm/dm/ts-money.svg?style=flat-square)](https://www.npmjs.com/package/ts-money)
-[![](https://img.shields.io/npm/dt/ts-money.svg?style=flat-square)](https://www.npmjs.com/package/ts-money)
+[![](https://img.shields.io/npm/dm/@screeny05/ts-money.svg?style=flat-square)](https://www.npmjs.com/package/@screeny05/ts-money)
+[![](https://img.shields.io/npm/dt/@screeny05/ts-money.svg?style=flat-square)](https://www.npmjs.com/package/@screeny05/ts-money)
 
 
 TS Money is a Typescript port of the great [js-money](https://www.npmjs.com/package/js-money) package, which is an implementation of Martin Fowlers [Money pattern](http://martinfowler.com/eaaCatalog/money.html). 
@@ -20,13 +20,13 @@ npm install ts-money
 First we need to import the library.
 
 ```typescript
-import { Money, Currencies } from 'ts-money'
+import { Money, Currencies } from '@screeny05/ts-money'
 ```
 
 or in javascript:
 
 ```javascript
-const TsMoney = require('ts-money')
+const TsMoney = require('@screeny05/ts-money')
 const Money = TsMoney.Money
 const Currencies = TsMoney.Currencies
 ```
@@ -72,7 +72,7 @@ interface Currency {
 Ex:
 
 ```typescript
-import { Currency } from 'ts-money'
+import { Currency } from '@screeny05/ts-money'
 
 const usd: Currency = {
     "symbol": "$",
@@ -109,7 +109,7 @@ fiveEur.divide(2.3456, Math.ceil) // 2.14 EUR
 
 ### Allocating funds
 
-Will divide the funds based on the ratio without loosing any pennies. 
+Will divide the funds based on the ratio without losing any pennies. 
 
 ```typescript
 const tenEur = new Money(1000, Currencies.EUR)
@@ -161,7 +161,7 @@ Some changes have been made compared with the javascript version:
 Currencies are now exported in a standalone object:
 
 ```typescript
-import { Money, Currencies } from 'ts-money'
+import { Money, Currencies } from '@screeny05/ts-money'
 
 Currencies.LTC = {
     symbol: "Ł",
@@ -208,21 +208,6 @@ npm run build
 ```sh
 npm test
 ```
-
-## 🎁 Thank you for your donations 
-
-> TS Money is an **open source** library and is completely **free** to use. 
-> 
-> If you find this project useful and would like to support its development, consider making a donation. 
-
-
-[![Donate with Bitcoin](https://en.cryptobadges.io/badge/big/1A71NTVtocr1WG6qFuQjhbVsEwXC7pKB5R)](https://en.cryptobadges.io/donate/1A71NTVtocr1WG6qFuQjhbVsEwXC7pKB5R)
-
-[![Donate with Ethereum](https://en.cryptobadges.io/badge/big/0x5cE72fB54733a15640AD23f8c8c296AadEeC53Cb)](https://en.cryptobadges.io/donate/0x5cE72fB54733a15640AD23f8c8c296AadEeC53Cb)
-
-[![Donate with Monero](https://en.cryptobadges.io/badge/big/4AzAgF56m5ihvDR5ctPVUE1RH78JEMsBHc63yYokHXbYGUCWsxphsmsgKzUkoQKmk7Tv6CSr3MosZ1wTR1wfHGt2187nHgj)](https://en.cryptobadges.io/donate/4AzAgF56m5ihvDR5ctPVUE1RH78JEMsBHc63yYokHXbYGUCWsxphsmsgKzUkoQKmk7Tv6CSr3MosZ1wTR1wfHGt2187nHgj)
-
-
 
 ## License
 

@@ -1,13 +1,31 @@
 {
-  "name": "ts-money",
+  "name": "@screeny05/ts-money",
+  "type": "module",
+  "sideEffects": false,
   "description": "Typescript port of js-money. Implementation of the Money value object.",
-  "version": "0.4.8",
-  "main": "build/index.js",
-  "typings": "build/index.d.ts",
-  "author": {
-    "name": "Mathew Cormier",
-    "email": "mathew.corm@gmail.com"
+  "version": "0.6.0",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
   },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "contributors": [
+    "Mathew Cormier <mathew.corm@gmail.com>",
+    "Sebastian Langer <sl@scn.cx>"
+  ],
   "keywords": [
     "money",
     "javascript",
@@ -17,20 +35,21 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/macor161/ts-money.git"
+    "url": "git://github.com/screeny05/ts-money.git"
   },
   "bugs": {
-    "url": "https://github.com/macor161/ts-money/issues"
+    "url": "https://github.com/screeny05/ts-money/issues"
   },
-  "dependencies": {},
   "devDependencies": {
-    "@types/node": "^7.0.23",
-    "chai": "1.x.x",
-    "mocha": "^10.0.0",
-    "typescript": "^2.3.4"
+    "@types/node": "^20.14.15",
+    "typescript": "^5.5.4",
+    "unbuild": "^2.0.0",
+    "vite": "^5.4.1",
+    "vitest": "^2.0.5"
   },
   "scripts": {
-    "build": "./node_modules/.bin/tsc",
-    "test": "mocha --reporter spec --require test/bootstrap/node test/*.test.js"
+    "build": "unbuild",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit"
   }
 }
