@@ -17,19 +17,19 @@ jobs:
                 node-version: [18, 20]
 
         steps:
-            - name: Checkout repository
-                uses: actions/checkout@v4
+          - name: Checkout repository
+            uses: actions/checkout@v4
 
-            - name: Set up Node.js ${{ matrix.node-version }}
-                uses: actions/setup-node@v4
-                with:
-                    node-version: ${{ matrix.node-version }}
+          - name: Set up Node.js ${{ matrix.node-version }}
+            uses: actions/setup-node@v4
+            with:
+              node-version: ${{ matrix.node-version }}
 
-            - name: Install dependencies
-                run: npm install --include=dev
+          - name: Install dependencies
+            run: npm install --include=dev
 
-            - name: Typescript checks
-                run: npm run typecheck
+          - name: Typescript checks
+            run: npm run typecheck
 
-            - name: Run tests
-                run: npm run test
+          - name: Run tests
+            run: npm run test
