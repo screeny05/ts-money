@@ -28,5 +28,8 @@ jobs:
             - name: Install dependencies
                 run: npm install --include=dev
 
+            - name: Typescript checks
+                run: npm run typecheck
+
             - name: Run tests
                 run: npm run test
