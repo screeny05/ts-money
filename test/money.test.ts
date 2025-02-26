@@ -51,7 +51,7 @@ describe('Money', function () {
         var money3 = Money.fromDecimal(10.0199, Currencies.EUR, Math.ceil);
         var money4 = Money.fromDecimal(10.0199, Currencies.EUR, Math.floor);
         var money5 = Money.fromDecimal(10.0199, Currencies.EUR, Math.round);
-        var money6 = Money.fromDecimal(10.0199, Currencies.EUR, function (amount) {
+        var money6 = Money.fromDecimal(10.0199, Currencies.EUR, function (amount: number) {
             return Math.round(amount)
         });
 
@@ -158,7 +158,7 @@ describe('Money', function () {
     it('should check for same type', function () {
         var first = new Money(1000, Currencies.EUR);
 
-        expect(first.add.bind(first, {})).to.throw(TypeError);
+        expect(first.add.bind(first, {} as Money)).to.throw(TypeError);
     });
 
     it('should check if equal', function () {
