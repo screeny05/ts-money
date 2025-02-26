@@ -159,13 +159,8 @@ Currencies are now exported in a standalone object:
 import { Money, Currencies } from '@screeny05/ts-money'
 
 Currencies.LTC = {
-  symbol: 'Ł',
-  name: 'Litecoin',
-  symbol_native: 'Ł',
   decimal_digits: 8,
-  rounding: 0,
   code: 'LTC',
-  name_plural: 'Litecoins',
 }
 
 const m1 = new Money(12, 'LTC')
