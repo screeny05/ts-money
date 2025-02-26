@@ -277,6 +277,9 @@ class Money {
         })
 
         for (let i = 0; remainder > 0; i++) {
+            while(results[i].amount === 0) {
+                i++
+            }
             results[i] = new Money(results[i].amount + 1, results[i].currency)
             remainder--
         }
@@ -425,10 +428,6 @@ class Money {
     getCurrencyInfo(): Currency {
         return getCurrencyObject(this.currency)
     }
-
-
 }
-
-Object.assign(Money, Currencies)
 
 export { Money, Currencies, Currency }
