@@ -2,8 +2,8 @@
   "name": "@screeny05/ts-money",
   "type": "module",
   "sideEffects": false,
-  "description": "Typescript port of js-money. Implementation of the Money value object.",
-  "version": "0.7.0",
+  "description": "Maintained and improved version of ts-money.",
+  "version": "1.0.0",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

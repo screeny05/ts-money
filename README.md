@@ -1,9 +1,9 @@
-# TS Money
+# @screeny05/ts-money
 
-[![NPM version](https://img.shields.io/npm/v/@screeny05/ts-money.svg)](https://www.npmjs.com/package/@screeny05/ts-money)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![NPM version](https://img.shields.io/npm/v/@screeny05/ts-money.svg?style=flat-square)](https://www.npmjs.com/package/@screeny05/ts-money)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![](https://img.shields.io/npm/dm/@screeny05/ts-money.svg?style=flat-square)](https://www.npmjs.com/package/@screeny05/ts-money)
-[![](https://img.shields.io/npm/dt/@screeny05/ts-money.svg?style=flat-square)](https://www.npmjs.com/package/@screeny05/ts-money)
+[![](https://deno.bundlejs.com/?q=@screeny05/ts-money&badge&badge-style=flat-square)](https://www.npmjs.com/package/@screeny05/ts-money)
 
 
 TS Money is a Typescript port of the great [js-money](https://www.npmjs.com/package/js-money) package, which is an implementation of Martin Fowlers [Money pattern](http://martinfowler.com/eaaCatalog/money.html). 
@@ -14,6 +14,13 @@ TS Money is a Typescript port of the great [js-money](https://www.npmjs.com/pack
 npm install ts-money
 ```
 
+## Differences from original [ts-money](https://github.com/macor161/ts-money)
+
+- Currencies are now exported in a standalone object.
+- Fixed bug with allocate method when a single allocation is zero. (thanks to [@dotpack](https://github.com/dotpack), see [PR #5](https://github.com/macor161/ts-money/pull/5))
+- Drastically reduced bundle-size by getting rid of lodash and removing unnecessary currency-data.
+    - Instead of using currency-data like currency-name, symbols, etc. from this package you should rely on either your environments [Intl.DisplayNames](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DisplayNames) API or the [currency-codes](https://www.npmjs.com/package/currency-codes) package.
+- Migrated package to vitest and unbuild.
 
 ## Usage
 
@@ -59,13 +66,8 @@ The `Currency` interface hold the following properties:
 
 ```typescript
 interface Currency {
-    symbol: string
-    name: string
-    symbol_native: string
     decimal_digits: number
-    rounding: number
     code: string
-    name_plural: string
 }
 ```
 
@@ -75,13 +77,8 @@ Ex:
 import { Currency } from '@screeny05/ts-money'
 
 const usd: Currency = {
-    "symbol": "$",
-    "name": "US Dollar",
-    "symbol_native": "$",
-    "decimal_digits": 2,
-    "rounding": 0,
-    "code": "USD",
-    "name_plural": "US dollars"
+    decimal_digits: 2,
+    code: "USD",
 }
 ```
 
@@ -115,7 +112,7 @@ Will divide the funds based on the ratio without losing any pennies.
 const tenEur = new Money(1000, Currencies.EUR)
 
 // divide 10 EUR into 3 parts
-const shares = tenEur.allocate([1,1,1]) 
+const shares = tenEur.allocate([1, 1, 1])
 // returns an array of Money instances worth [334,333,333]
 
 // split 5 EUR 70/30
