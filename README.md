@@ -3,10 +3,9 @@
 [![NPM version](https://img.shields.io/npm/v/@screeny05/ts-money.svg?style=flat-square)](https://www.npmjs.com/package/@screeny05/ts-money)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![](https://img.shields.io/npm/dm/@screeny05/ts-money.svg?style=flat-square)](https://www.npmjs.com/package/@screeny05/ts-money)
-[![](https://deno.bundlejs.com/?q=@screeny05/ts-money&badge&badge-style=flat-square)](https://www.npmjs.com/package/@screeny05/ts-money)
+[![](https://deno.bundlejs.com/?q=@screeny05/ts-money&badge&badge-style=flat-square)](https://bundlejs.com/?q=%40screeny05%2Fts-money)
 
-
-TS Money is a Typescript port of the great [js-money](https://www.npmjs.com/package/js-money) package, which is an implementation of Martin Fowlers [Money pattern](http://martinfowler.com/eaaCatalog/money.html). 
+TS Money is a Typescript port of the great [js-money](https://www.npmjs.com/package/js-money) package, which is an implementation of Martin Fowlers [Money pattern](http://martinfowler.com/eaaCatalog/money.html).
 
 ## Install
 
@@ -19,7 +18,7 @@ npm install ts-money
 - Currencies are now exported in a standalone object.
 - Fixed bug with allocate method when a single allocation is zero. (thanks to [@dotpack](https://github.com/dotpack), see [PR #5](https://github.com/macor161/ts-money/pull/5))
 - Drastically reduced bundle-size by getting rid of lodash and removing unnecessary currency-data.
-    - Instead of using currency-data like currency-name, symbols, etc. from this package you should rely on either your environments [Intl.DisplayNames](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DisplayNames) API or the [currency-codes](https://www.npmjs.com/package/currency-codes) package.
+  - Instead of using currency-data like currency-name, symbols, etc. from this package you should rely on either your environments [Intl.DisplayNames](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DisplayNames) API or the [currency-codes](https://www.npmjs.com/package/currency-codes) package.
 - Migrated package to vitest and unbuild.
 
 ## Usage
@@ -41,9 +40,10 @@ const Currencies = TsMoney.Currencies
 ### Creating a new instance
 
 There are multiple options of what to pass into the constructor to create a new Money instance:
-* amount as number, currency as string
-* amount as number, currency as object
-* object with amount and currency fields (only with `fromInteger` and `fromDecimal` methods)
+
+- amount as number, currency as string
+- amount as number, currency as object
+- object with amount and currency fields (only with `fromInteger` and `fromDecimal` methods)
 
 Amounts can be supplied either as integers or decimal numbers.
 
@@ -66,8 +66,8 @@ The `Currency` interface hold the following properties:
 
 ```typescript
 interface Currency {
-    decimal_digits: number
-    code: string
+  decimal_digits: number
+  code: string
 }
 ```
 
@@ -77,8 +77,8 @@ Ex:
 import { Currency } from '@screeny05/ts-money'
 
 const usd: Currency = {
-    decimal_digits: 2,
-    code: "USD",
+  decimal_digits: 2,
+  code: 'USD',
 }
 ```
 
@@ -92,21 +92,21 @@ const fiveEur = new Money(500, Currencies.EUR) // 5 EUR
 // add
 fiveEur.add(new Money(250, Currencies.EUR)) // 7.50 EUR
 
-// subtract 
+// subtract
 fiveEur.subtract(new Money(470, Currencies.EUR)) // 0.30 EUR
 
 // multiply
 fiveEur.multiply(1.2345) // 6.17 EUR
 fiveEur.multiply(1.2345, Math.ceil) // 6.18 EUR
 
-// divide 
+// divide
 fiveEur.divide(2.3456) // 2.13 EUR
 fiveEur.divide(2.3456, Math.ceil) // 2.14 EUR
 ```
 
 ### Allocating funds
 
-Will divide the funds based on the ratio without losing any pennies. 
+Will divide the funds based on the ratio without losing any pennies.
 
 ```typescript
 const tenEur = new Money(1000, Currencies.EUR)
@@ -117,9 +117,8 @@ const shares = tenEur.allocate([1, 1, 1])
 
 // split 5 EUR 70/30
 const fiveEur = new Money(500, Currencies.EUR)
-const shares = fiveEur.allocate([70,30])
+const shares = fiveEur.allocate([70, 30])
 // returns an array of money [350,150]
-
 ```
 
 ### Comparison and equality
@@ -148,7 +147,6 @@ fiveEur.lessThan(sevenEur) // return true
 fiveEur.lessThanOrEqual(fiveEur) // return true
 ```
 
-
 ## Modifications
 
 Some changes have been made compared with the javascript version:
@@ -161,19 +159,18 @@ Currencies are now exported in a standalone object:
 import { Money, Currencies } from '@screeny05/ts-money'
 
 Currencies.LTC = {
-    symbol: "Ł",
-    name: "Litecoin",
-    symbol_native: "Ł",
-    decimal_digits: 8,
-    rounding: 0,
-    code: "LTC",
-    name_plural: "Litecoins"    
+  symbol: 'Ł',
+  name: 'Litecoin',
+  symbol_native: 'Ł',
+  decimal_digits: 8,
+  rounding: 0,
+  code: 'LTC',
+  name_plural: 'Litecoins',
 }
 
 const m1 = new Money(12, 'LTC')
 const m2 = new Money(234, Currencies.USD)
 const m3 = new Money(543, Currencies.LTC)
-
 ```
 
 ### Case insensitive currencies
