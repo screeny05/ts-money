@@ -10,7 +10,7 @@ TS Money is a Typescript port of the great [js-money](https://www.npmjs.com/pack
 ## Install
 
 ```sh
-npm install ts-money
+npm install @screeny05/ts-money
 ```
 
 ## Differences from original [ts-money](https://github.com/macor161/ts-money)
@@ -19,6 +19,8 @@ npm install ts-money
 - Fixed bug with allocate method when a single allocation is zero. (thanks to [@dotpack](https://github.com/dotpack), see [PR #5](https://github.com/macor161/ts-money/pull/5))
 - Drastically reduced bundle-size by getting rid of lodash and removing unnecessary currency-data.
   - Instead of using currency-data like currency-name, symbols, etc. from this package you should rely on either your environments [Intl.DisplayNames](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DisplayNames) API or the [currency-codes](https://www.npmjs.com/package/currency-codes) package.
+- Added `Money.from(amount: Amount)` as shortcut for `Money.fromInteger(amount: Amount)`
+- Added `Money#fractionOf()` and `Money#percentageOf()` (see [below](#basic-arithmetics))
 - Migrated package to vitest and unbuild.
 
 ## Usage
@@ -102,6 +104,14 @@ fiveEur.multiply(1.2345, Math.ceil) // 6.18 EUR
 // divide
 fiveEur.divide(2.3456) // 2.13 EUR
 fiveEur.divide(2.3456, Math.ceil) // 2.14 EUR
+
+// fraction calculation
+fiveEur.fractionOf(new Money(750, Currencies.EUR)) // 0.6667
+
+// percentage calculation (same as fraction but with rounding and precision)
+fiveEur.percentageOf(new Money(750, Currencies.EUR)) // 67
+fiveEur.percentageOf(new Money(750, Currencies.EUR), 2) // 66.67
+fiveEur.percentageOf(new Money(750, Currencies.EUR), 2, 'floor') // 66.66
 ```
 
 ### Allocating funds
