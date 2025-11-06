@@ -22,6 +22,7 @@ npm install @screeny05/ts-money
 - Added `Money.from(amount: Amount)` as shortcut for `Money.fromInteger(amount: Amount)`
 - Added `Money#fractionOf()` and `Money#percentageOf()` (see [below](#basic-arithmetics))
 - Migrated package to vitest and unbuild.
+- Throws a more descriptive error when dividing by zero.
 
 ## Usage
 

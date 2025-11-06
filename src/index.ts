@@ -255,6 +255,7 @@ class Money {
     if (typeof fn !== 'function') fn = Math.round
 
     assertOperand(divisor)
+    if (divisor === 0) throw new Error('Operand must be a non-zero number')
     let amount = fn(this.amount / divisor)
 
     return new Money(amount, this.currency)
